@@ -26,7 +26,11 @@ describe('<TodoList />', () => {
         const onToggle = jest.fn();
         const onRemove = jest.fn();
         const {getByText, getAllByText} = render(
-            <TodoList todos={sampleTodos} onToggle={onToggle} onRemove={onRemove}/>
+            <TodoList 
+                todos={sampleTodos} 
+                onToggle={onToggle} 
+                onRemove={onRemove}
+            />
         );
 
             fireEvent.click(getByText(sampleTodos[0].text));
