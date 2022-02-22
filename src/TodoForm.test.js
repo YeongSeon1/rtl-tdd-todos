@@ -3,6 +3,17 @@ import { fireEvent, render } from '@testing-library/react'; // react-testing-lib
 import TodoForm from './TodoForm';
 
 describe('<TodoForm />', () => {
+
+    //중복된 부분을 함수로 빼는중 => 리팩토링
+    const setup = (props = {}) => {
+        const utils = render(<TodoForm {...props}/>);
+        const {getByText, getByPlaceholderText} = utils;
+        const input = getByPlaceholderText('할 일을 입력하세요~'); //TodoForm에 있는 input이랑 같아야 한다.
+        const button = getByText('등록'); //TodoForm에 있는 button이랑 같아야 한다.
+
+        return {...utils, input, button}; // utils는 화면 전체를 말한다. 
+    }
+
     it('has input and a button', () => {
         const {getByText, getByPlaceholderText} = render(<TodoForm />);
         getByPlaceholderText('할 일을 입력하세요~'); //input 있는지 없는지
@@ -27,7 +38,5 @@ describe('<TodoForm />', () => {
         expect(onInsert).toBeCalledWith('TDD 배우기');
         expect(input).toHaveAttribute('value', '');
     });
-    
-    
 });
 
