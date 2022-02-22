@@ -16,7 +16,6 @@ describe('<TodoForm />', () => {
 
     it('has input and a button', () => {
         const {input, button} = setup();
-
         expect(input).toBeTruthy();
         expect(button).toBeTruthy();
     });
